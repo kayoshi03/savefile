@@ -1,14 +1,14 @@
 import {useState} from "react";
-import {FileList} from "../components/FileList.tsx";
 import {axiosAuth} from "../api/interceptor.tsx";
 import {fetchMedia} from "../redux/slice/files.slice.ts";
 import {useDispatch} from "react-redux";
+import {AppDispatch} from "../redux/store.ts";
 
 
 export const useAddFile = () => {
     const [file, setFile] = useState<FileList | null>(null);
     const [loading, setLoading] = useState(false)
-    const dispatch = useDispatch()
+    const dispatch = useDispatch<AppDispatch>()
 
     //Select Files
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +21,9 @@ export const useAddFile = () => {
                 setFile(e.target.files);
             }
             else {
-                alert("1MB limited")
+                alert("1MB limit exceeded")
+                e.target.value = ""
+                setFile(null)
             }
         }
     };
@@ -40,15 +42,19 @@ export const useAddFile = () => {
                         "Content-Type": "multipart/form-data"
                     }
                 });
-                if(result.data.status == "ok") {
-                    dispatch(fetchMedia())
+                if(result.data.status === "ok") {
+                    await dispatch(fetchMedia())
+                    setFile(null)
                     setLoading(false)
                 }
                 else {
                     alert("Error")
+                    setLoading(false)
                 }
             } catch (error) {
-                console.error(error);
+                console.error("Upload error:", error);
+                alert("An error occurred while uploading files");
+                setLoading(false);
             }
         }
     };

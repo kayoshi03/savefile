@@ -1,7 +1,7 @@
 import {axiosAuth} from "../api/interceptor.tsx";
 
 export const useDonwloadFile = () => {
-    const donwload = async (link, name) => {
+    const donwload = async (link:string, name:string) => {
         const data = await axiosAuth.get(link, {
             responseType: "blob"
         })

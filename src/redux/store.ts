@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { useDispatch } from 'react-redux'
 import loginReducer from "./slice/user.slice.ts";
 import mediaReducer from "./slice/files.slice.ts"
 export const store = configureStore({
@@ -9,5 +8,5 @@ export const store = configureStore({
     }
 })
 
-export type AppDispatch = typeof store.dispatch
-export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;

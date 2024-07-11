@@ -5,7 +5,7 @@ import {format} from "date-fns"
 import {useDeleteFile} from "../hooks/useDeleteFile.tsx";
 import {useDonwloadFile} from "../hooks/useDonwloadFile.tsx";
 
-interface ICardItem {
+export interface ICardItem {
     id: string
     name: string
     fileName: string

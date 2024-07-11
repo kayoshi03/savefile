@@ -1,8 +1,10 @@
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {useGetFile} from "../hooks/useGetFile.tsx";
 
-
-export const ImageFile = ({url}) => {
+interface ImageFileProps {
+    url: string;
+}
+export const ImageFile: React.FC<ImageFileProps> = ({url}) => {
     const {imgSrc,fetch} = useGetFile()
 
     useEffect(() => {

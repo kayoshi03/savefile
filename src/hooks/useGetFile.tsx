@@ -4,7 +4,7 @@ import {axiosAuth} from "../api/interceptor.tsx";
 export const useGetFile = () => {
     const [imgSrc, setImgSrc] = useState('');
     //Get images
-    const fetch = useCallback(async (url) => {
+    const fetch = useCallback(async (url:string) => {
         const data = await axiosAuth.get(url, {
             responseType: "blob"
         });

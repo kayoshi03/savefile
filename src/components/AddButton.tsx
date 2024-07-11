@@ -6,7 +6,7 @@ export const AddButton = () => {
     const {file, loading, handleUpload, handleFileChange} = useAddFile()
     return (
         <>
-            <input className={style.add} multiple={true} disabled={data.length == 19} id="file" type="file" onChange={handleFileChange}/>
+            <input className={style.add} multiple={true} disabled={Array.isArray(data) && data.length === 19} id="file" type="file" onChange={handleFileChange}/>
             {file && file.length > 0 && <button className={style.button}  disabled={loading} onClick={handleUpload}>Upload a file</button>}
         </>
     )

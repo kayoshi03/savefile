@@ -16,10 +16,10 @@ export const Form:React.FC<IForm> = ({type}) => {
 
     const [error, setError] = useState(false)
 
-    const fetch = async (e) => {
+    const fetch = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setError(false)
-        const field = new FormData(e.target)
+        const field = new FormData(e.currentTarget)
         try {
             const data = await axios.post(`https://js-test.kitactive.ru/api/${type}`, {
                 email: field.get("email"),
