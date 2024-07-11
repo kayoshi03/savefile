@@ -1,0 +1,10 @@
+.add {
+  display: block;
+}
+.button {
+  padding: 10px;
+  background: #0014ff;
+}
+.button:disabled {
+  background: #9a0011;
+}
