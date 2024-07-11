@@ -35,7 +35,7 @@ const filesSlice = createSlice({
             })
             .addCase(fetchMedia.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.error.message || 'Unknown error';;
+                state.error = action.error.message || 'Unknown error';
             });
     }
 })
